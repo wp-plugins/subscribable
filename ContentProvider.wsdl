@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.subscribable.com/URLSA/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://www.subscribable.com/URLSA/" xmlns:intf="http://www.subscribable.com/URLSA/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://soapinterop.org/xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://www.subscribable.com/URLSA/" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://soapinterop.org/xsd"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ParameterFault">
+    <sequence>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="AuthorizationFault">
+    <sequence>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="LogInFault">
+    <sequence>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UserMessageFault">
+    <sequence>
+     <element name="userMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="InviteFault">
+    <sequence>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="SubscribeFault">
+    <sequence>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="UnsubscribeFault">
+    <sequence>
+     <element name="errorMessage" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="http://soapinterop.org/xsd" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://www.subscribable.com/URLSA/"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOfstring">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="UnsubscribeResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="InviteFault">
+
+      <wsdl:part name="InviteFault" type="impl:InviteFault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="UnsubscribeFault">
+
+      <wsdl:part name="UnsubscribeFault" type="impl:UnsubscribeFault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="InviteRequest">
+
+      <wsdl:part name="usernames" type="tns1:ArrayOfstring"/>
+
+      <wsdl:part name="realNames" type="tns1:ArrayOfstring"/>
+
+      <wsdl:part name="url" type="xsd:string"/>
+
+      <wsdl:part name="inviter" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="SubscribeRequest">
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="realName" type="xsd:string"/>
+
+      <wsdl:part name="url" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="LogInResponse">
+
+      <wsdl:part name="LogInResult" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="InviteResponse">
+
+      <wsdl:part name="InviteResult" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="LogInRequest">
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="realName" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="SubscribeResponse">
+
+      <wsdl:part name="SubscribeResult" type="tns1:ArrayOfstring"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="SubscribeFault">
+
+      <wsdl:part name="SubscribeFault" type="impl:SubscribeFault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="UserMessageFault">
+
+      <wsdl:part name="UserMessageFault" type="impl:UserMessageFault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ParameterFault">
+
+      <wsdl:part name="ParameterFault" type="impl:ParameterFault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="UnsubscribeRequest">
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+      <wsdl:part name="url" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="AuthorizationFault">
+
+      <wsdl:part name="AuthorizationFault" type="impl:AuthorizationFault"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="LogInFault">
+
+      <wsdl:part name="LogInFault" type="impl:LogInFault"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ContentProvider">
+
+      <wsdl:operation name="LogIn" parameterOrder="username realName">
+
+         <wsdl:input message="impl:LogInRequest" name="LogInRequest"/>
+
+         <wsdl:output message="impl:LogInResponse" name="LogInResponse"/>
+
+         <wsdl:fault message="impl:AuthorizationFault" name="AuthorizationFault"/>
+
+         <wsdl:fault message="impl:ParameterFault" name="ParameterFault"/>
+
+         <wsdl:fault message="impl:LogInFault" name="LogInFault"/>
+
+         <wsdl:fault message="impl:UserMessageFault" name="UserMessageFault"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="Invite" parameterOrder="usernames realNames url inviter">
+
+         <wsdl:input message="impl:InviteRequest" name="InviteRequest"/>
+
+         <wsdl:output message="impl:InviteResponse" name="InviteResponse"/>
+
+         <wsdl:fault message="impl:InviteFault" name="InviteFault"/>
+
+         <wsdl:fault message="impl:AuthorizationFault" name="AuthorizationFault"/>
+
+         <wsdl:fault message="impl:ParameterFault" name="ParameterFault"/>
+
+         <wsdl:fault message="impl:UserMessageFault" name="UserMessageFault"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="Subscribe" parameterOrder="username realName url">
+
+         <wsdl:input message="impl:SubscribeRequest" name="SubscribeRequest"/>
+
+         <wsdl:output message="impl:SubscribeResponse" name="SubscribeResponse"/>
+
+         <wsdl:fault message="impl:AuthorizationFault" name="AuthorizationFault"/>
+
+         <wsdl:fault message="impl:SubscribeFault" name="SubscribeFault"/>
+
+         <wsdl:fault message="impl:ParameterFault" name="ParameterFault"/>
+
+         <wsdl:fault message="impl:UserMessageFault" name="UserMessageFault"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="Unsubscribe" parameterOrder="username url">
+
+         <wsdl:input message="impl:UnsubscribeRequest" name="UnsubscribeRequest"/>
+
+         <wsdl:output message="impl:UnsubscribeResponse" name="UnsubscribeResponse"/>
+
+         <wsdl:fault message="impl:UnsubscribeFault" name="UnsubscribeFault"/>
+
+         <wsdl:fault message="impl:AuthorizationFault" name="AuthorizationFault"/>
+
+         <wsdl:fault message="impl:ParameterFault" name="ParameterFault"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ContentProviderSoapBinding" type="impl:ContentProvider">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="LogIn">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="LogInRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="LogInResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="AuthorizationFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="AuthorizationFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParameterFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ParameterFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="LogInFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="LogInFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UserMessageFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="UserMessageFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="Invite">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="InviteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="InviteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="InviteFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="InviteFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="AuthorizationFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="AuthorizationFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParameterFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ParameterFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UserMessageFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="UserMessageFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="Subscribe">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="SubscribeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="SubscribeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="AuthorizationFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="AuthorizationFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="SubscribeFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="SubscribeFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParameterFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ParameterFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="UserMessageFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="UserMessageFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="Unsubscribe">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="UnsubscribeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="UnsubscribeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="UnsubscribeFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="UnsubscribeFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="AuthorizationFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="AuthorizationFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ParameterFault">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="ParameterFault" namespace="http://www.subscribable.com/URLSA/" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ContentProviderService">
+
+      <wsdl:port binding="impl:ContentProviderSoapBinding" name="ContentProvider">
+
+         <wsdlsoap:address location=""/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
